@@ -2,9 +2,9 @@
 import json
 
 from datetime import datetime
-from db_bill import  create_product, get_product, get_products, update_product, delete_product
-from db_bill import create_client, get_client, get_clients, update_client, delete_client
-from db_bill import create_bill, get_bill, get_bills, update_bill, delete_bill
+from src.db_bill import  create_product, get_product, get_products, update_product, delete_product
+from src.db_bill import create_client, get_client, get_clients, update_client, delete_client
+from src.db_bill import create_bill, get_bill, get_bills, update_bill, delete_bill
 
 
 def bill_create_product(request):
