@@ -5,9 +5,9 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS, cross_origin
 from datetime import datetime
-from bill import bill_create_product, bill_get_products, bill_get_product, bill_update_product, bill_delete_product
-from bill import bill_create_client, bill_get_clients, bill_get_client, bill_update_client, bill_delete_client
-from bill import bill_create_bill, bill_get_bill, bill_get_bills, bill_update_bill, bill_delete_bill
+from src.bill import bill_create_product, bill_get_products, bill_get_product, bill_update_product, bill_delete_product
+from src.bill import bill_create_client, bill_get_clients, bill_get_client, bill_update_client, bill_delete_client
+from src.bill import bill_create_bill, bill_get_bill, bill_get_bills, bill_update_bill, bill_delete_bill
 
 
 app = Flask(__name__)
