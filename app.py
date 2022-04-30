@@ -9,7 +9,7 @@ from src.bill import bill_create_product, bill_get_products, bill_get_product, b
 from src.bill import bill_create_client, bill_get_clients, bill_get_client, bill_update_client, bill_delete_client
 from src.bill import bill_create_bill, bill_get_bill, bill_get_bills, bill_update_bill, bill_delete_bill
 from src.cost import cost_create_cost, cost_get_costs, cost_get_cost, cost_update_cost, cost_delete_cost
-from src.pay import  pay_create_invoice, pay_get_invoice, pay_get_invoices, pay_update_invoice_products, pay_delete_invoice
+from src.pay import  pay_create_invoice, pay_get_invoices, pay_update_invoice_products, pay_delete_invoice
 
 app = Flask(__name__)
 CORS(app)
@@ -293,19 +293,6 @@ def api_get_invoices():
     
     except BaseException as e:
         return response(400, log_error(e), "Error")
-
-
-# Funtion to get a invoice by id
-@cross_origin
-@app.route(url_pay + "/get-invoice/<id>", methods=['GET'])
-def api_get_invoice(id):
-    try:
-        code, data, message = pay_get_invoice(id)
-        return response(code, data, message)
-    
-    except BaseException as e:
-        return response(400, log_error(e), "Error")
-
 
 # Funtion to update a invoice by id
 @cross_origin
