@@ -9,7 +9,7 @@ from src.bill import bill_create_product, bill_get_products, bill_get_product, b
 from src.bill import bill_create_client, bill_get_clients, bill_get_client, bill_update_client, bill_delete_client
 from src.bill import bill_create_bill, bill_get_bill, bill_get_bills, bill_update_bill, bill_delete_bill
 from src.cost import cost_create_cost, cost_get_costs, cost_get_cost, cost_update_cost, cost_delete_cost
-
+from src.pay import  pay_create_invoice, pay_get_invoices, pay_update_invoice_products, pay_delete_invoice
 
 app = Flask(__name__)
 CORS(app)
@@ -23,7 +23,7 @@ url_products = url_base +  "/products"
 url_clients = url_base + "/clients"
 url_bills = url_base + "/bills"
 url_cost = url_base + "/cost"
-url_pay = url_base + "/cost"
+url_pay = url_base + "/pay"
 
 
 # Funtion to create a product
@@ -269,6 +269,55 @@ def api_delete_cost(id):
     
     except BaseException as e:
         return response(400, log_error(e), "Error")
+
+
+# Funtion to create a invoice
+@cross_origin
+@app.route(url_pay + "/create-invoice", methods=['POST'])
+def api_create_invoice():
+    try:
+        code, data, message = pay_create_invoice(request)
+        return response(code, data, message)
+    
+    except BaseException as e:
+        return response(400, log_error(e), "Error")
+
+
+# Funtion to get all invoices
+@cross_origin
+@app.route(url_pay + "/get-invoices", methods=['GET'])
+def api_get_invoices():
+    try:
+        code, data, message = pay_get_invoices()
+        return response(code, data, message)
+    
+    except BaseException as e:
+        return response(400, log_error(e), "Error")
+
+# Funtion to update a invoice by id
+@cross_origin
+@app.route(url_pay + "/update-invoice-products/<id>", methods=['PUT'])
+def api_update_invoice_products(id):
+    try:
+        code, data, message = pay_update_invoice_products(request, id)
+        return response(code, data, message)
+    
+    except BaseException as e:
+        return response(400, log_error(e), "Error")
+
+
+# Funtion to delete a invoice by id
+@cross_origin
+@app.route(url_pay + "/delete-invoice/<id>", methods=['DELETE'])
+def api_delete_invoice(id):
+    
+    try:
+        code, data, message = pay_delete_invoice(id)
+        return response(code, data, message)
+    
+    except BaseException as e:
+        return response(400, log_error(e), "Error")
+
 
 # Function to response Api standard
 def response(status_code, body, message):
